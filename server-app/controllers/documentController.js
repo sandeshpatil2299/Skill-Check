@@ -172,10 +172,10 @@ export const getDocument = async (req, res, next) => {
 
         //Combine document data with counts
         const documentData= document.toObject();
-        documentData.flashcardCount= flashcardCount();
-        documentData.quizCount= quizCount();
+        documentData.flashcardCount= flashcardCount;
+        documentData.quizCount= quizCount;
 
-        res.statu(200).json({
+        res.status(200).json({
             success: true,
             data: documentData
         });
@@ -214,17 +214,6 @@ export const deleteDocument = async (req, res, next) => {
             message: "Document deleted successfuly"
         });
 
-    } catch (error) {
-        next(error);
-    }
-}
-
-//@desc Update document title
-//@route POST /api/documents/:id
-//access Private
-export const updateDocument = async (req, res, next) => {
-    try {
-        
     } catch (error) {
         next(error);
     }

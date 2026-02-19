@@ -6,7 +6,7 @@ import {
     chat,
     explainConcept,
     getChatHistory
-} from "../controllers/authController.js";
+} from "../controllers/aiController.js";
 import protect from '../middleware/auth.js';
 const router= express.Router();
 

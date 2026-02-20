@@ -13,11 +13,11 @@ const flashcardSchema= new mongoose.Schema({
         required: true
     },
     cards: [{
-        questions: {type: String, required: true},
+        question: {type: String, required: true},
         answer: {type: String, required: true},
         difficulty: {
             type: String,
-            enum: ['easy', 'medium', 'hard'],
+            enum: ['easy', 'medium', 'hard'],   
             default: 'medium'
         },
         lastReviewed: {

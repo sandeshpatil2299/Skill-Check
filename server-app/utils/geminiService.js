@@ -80,19 +80,19 @@ export const generateFlashcards = async (text, count = 10) => {
  * @returns {Promise<Array<{question: string, options: Array, correctAnswer: string, explanation: string, difficulty: string}>>}
  */
 
-export const generateQuiz = async (text, numQuestions = 5) => {
-    const prompt = `Generate exactly ${numQuestions} mutiple choice questions from the following text.
+export const generateQuizAI = async (text, numQuestions = 5) => {
+    const prompt = `Generate exactly ${numQuestions} multiple choice questions from the following text.
     Format each question as:
     Q: [Question]
-    01: [Opation 1]
-    02: [Opation 2]
-    03: [Opation 3]
-    04: [Opation 4]
+    01: [Option  1]
+    02: [Option  2]
+    03: [Option  3]
+    04: [Option  4]
     C: [Correct Option - exactly as written above]
     E: [Brief explanation]
     D: [Difficulty: easy, medium, or hard]
     
-    Seperate questions with "---"
+    Separate questions with "---"
     
     Text:
     ${text.substring(0, 1500)}`;
@@ -117,7 +117,7 @@ export const generateQuiz = async (text, numQuestions = 5) => {
                 if (trimmed.startsWith('Q:')) {
                     question = trimmed.substring(2).trim();
                 }
-                else if (trimmed.match(/^0\d:/)) {
+                else if (trimmed.match(/^0[1-4]:/)) {
                     options.push(trimmed.substring(3).trim());
                 }
                 else if (trimmed.startsWith('C:')) {
@@ -127,7 +127,7 @@ export const generateQuiz = async (text, numQuestions = 5) => {
                     explanation = trimmed.substring(2).trim();
                 }
                 else if (trimmed.startsWith('D:')) {
-                    const diff = trimmed.substring(2).trim().toLocaleLowerCase();
+                    const diff = trimmed.substring(2).trim().toLowerCase();
                     if (['easy', 'medium', 'hard'].includes(diff)) {
                         difficulty = diff;
                     }

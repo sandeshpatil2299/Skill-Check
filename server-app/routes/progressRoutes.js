@@ -9,6 +9,6 @@ const router= express.Router();
 //All routes protected
 router.use(protect);
 
-router.post('/dashboard', getDashboard); 
+router.get('/dashboard', getDashboard); 
 
 export default router;

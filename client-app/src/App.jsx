@@ -13,10 +13,10 @@ import FlashcardPage from "./pages/Flashcards/FlashcardPage"
 import QuizeTakePage from "./pages/Quizess/QuizeTakePage"
 import QuizeResultPage from "./pages/Quizess/QuizeResultPage"
 import ProfilePage from "./pages/Profile/ProfilePage"
+import { useAuth } from './context/AuthContext'
 
 const App = () => {
-  const isAuthenticated = true
-  const loading = false
+  const { isAuthenticated, loading } = useAuth()
 
   if (loading) {
     return (
@@ -38,15 +38,15 @@ const App = () => {
         <Route path='/register' element={<RegisterPage />} />
 
         {/* protected routes */}
-        <Route element={<ProtectedRoute/>}>
-          <Route path='/dashboard' element={<DashboardPage/>} />
-          <Route path='/documents' element={<DocumentListPage/>} />
-          <Route path='/documents/:id' element={<DocumentDetailPage/>} />
-          <Route path='/flashcards' element={<FlashcardsListPage/>} />
-          <Route path='/documents/:id/flashcards' element={<FlashcardPage/>} />
-          <Route path='/quizzes/:quizId' element={<QuizeTakePage/>} />
-          <Route path='/quizzes/:quizId/results' element={<QuizeResultPage/>} />
-          <Route path='/profile' element={<ProfilePage/>} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/dashboard' element={<DashboardPage />} />
+          <Route path='/documents' element={<DocumentListPage />} />
+          <Route path='/documents/:id' element={<DocumentDetailPage />} />
+          <Route path='/flashcards' element={<FlashcardsListPage />} />
+          <Route path='/documents/:id/flashcards' element={<FlashcardPage />} />
+          <Route path='/quizzes/:quizId' element={<QuizeTakePage />} />
+          <Route path='/quizzes/:quizId/results' element={<QuizeResultPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
         </Route>
 
 

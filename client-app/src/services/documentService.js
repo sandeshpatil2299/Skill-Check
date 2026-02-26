@@ -37,7 +37,7 @@ const getDocumentById= async(id) => {
         const response= await axiosInstance.get(API_PATHS.DOCUMENTS.GET_DOCUMENT_BY_ID(id));
         return response.data;
     } catch (error) {
-        throw error.response?.data || {message: 'Failed to fatch document details'};
+            
     }
 };
 

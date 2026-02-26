@@ -7,6 +7,7 @@ const login= async (email, password) => {
             email,
             password
         });
+        return response.data?.data;
     } catch (error) {
         throw error.response?.data || {message: 'An unknown error occured'};
     }

@@ -10,6 +10,7 @@ import {
 import protect from '../middleware/auth.js';
 const router= express.Router();
 
+//All routes protected;
 router.use(protect);
 
 router.post('/generate-flashcards', generateFlashcards);
@@ -20,4 +21,3 @@ router.post('/explain-concept', explainConcept);
 router.get('/chat-history/:documentId', getChatHistory);
 
 export default router;
-

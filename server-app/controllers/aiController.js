@@ -125,49 +125,49 @@ export const generateQuiz  = async (req, res, next) => {
 //@desc Generate document summary
 //@route POST /api/ai/generate-summary
 //@access Private
-export const generateSummary = async (req, res, next) => {
-    try {
-        const {documentId}= req.body;
+    export const generateSummary = async (req, res, next) => {
+        try {
+            const {documentId}= req.body;
 
-        if(!documentId) {
-            return res.status(400).json({
-                success: false,
-                error: "Please provide document Id",
-                statusCode: 401
+            if(!documentId) {
+                return res.status(400).json({
+                    success: false,
+                    error: "Please provide document Id",
+                    statusCode: 401
+                }); 
+            }
+
+            const document= await Document.findOne({
+                _id: documentId, 
+                userId: req.user._id,
+                status: 'ready'
             });
-        }
 
-        const document= await Document.findOne({
-            _id: documentId, 
-            userId: req.user._id,
-            status: 'ready'
-        });
+            if(!document) {
+                return res.status(404).json({
+                    success: false,
+                    error: "Document not found or not ready",
+                    statusCode: 404
+                });
+            }
 
-        if(!document) {
-            return res.status(404).json({
-                success: false,
-                error: "Document not found or not ready",
-                statusCode: 404
+            //Generate document summary using gemini
+            const summary= await geminiService.generateSummary(document.extractedText);
+
+            res.status(201).json({
+                success: true,
+                data: {
+                    documentId: document._id,
+                    title: document.title,
+                    summary
+                },
+                message: "Summary generated successfuly"
             });
+
+        } catch (error) {
+            next(error);
         }
-
-        //Generate document summary using gemini
-        const summary= await geminiService.generateSummary(document.extractedText);
-
-        res.status(201).json({
-            success: true,
-            data: {
-                documentId: document._id,
-                title: document.title,
-                summary
-            },
-            message: "Summary generated successfuly"
-        });
-
-    } catch (error) {
-        next(error);
-    }
-};
+    };
 
 //@desc Chat with document
 //@route POST /api/ai/chat

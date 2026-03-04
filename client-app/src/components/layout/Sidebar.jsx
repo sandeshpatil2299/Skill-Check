@@ -23,9 +23,6 @@ const Sidebar = ({ isSideBarOpen, toggleSidebar }) => {
             to: '/flashcards', icon: BookOpen, text: 'Flashcards'
         },
         {
-            to: '/quizzes', icon: BrainCircuit, text: 'Quizzes'
-        },
-        {
             to: '/profile', icon: User, text: 'Profile'
         }
     ]

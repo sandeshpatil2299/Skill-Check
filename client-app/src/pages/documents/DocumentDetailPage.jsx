@@ -19,6 +19,7 @@ import Tabs from '../../components/common/Tabs'
 import ChatInterface from '../../components/chat/ChatInterface'
 import AIActions from '../../components/ai/AIActions'
 import FlashcardManager from '../../components/flashcards/FlashcardManager'
+import QuizManager from '../../components/quizess/QuizManager'
 
 const DocumentDetailPage = () => {
     const { id } = useParams();
@@ -133,21 +134,7 @@ const DocumentDetailPage = () => {
 
     const renderQuizzesTab = () => {
         return (
-            <div className="flex flex-col items-center justify-center py-20">
-                <div className="w-20 h-20 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-teal-200/50">
-                    <BrainCircuit className="w-10 h-10 text-teal-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">No Quizzes Yet</h3>
-                <p className="text-slate-500 text-sm text-center max-w-md mb-6">
-                    Create a quiz from this document to test your knowledge.
-                </p>
-                <button
-                    onClick={() => navigate(`/quizzes/generate?docId=${id}`)}
-                    className="px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-xl hover:from-teal-600 hover:to-cyan-600 transition-all shadow-lg shadow-teal-500/25 font-medium"
-                >
-                    Generate Quiz
-                </button>
-            </div>
+            <QuizManager documentId={id}/>
         );
     };
 

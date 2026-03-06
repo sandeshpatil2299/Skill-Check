@@ -139,7 +139,7 @@ const DocumentDetailPage = () => {
     };
 
     const tabs = [
-        { name: 'content', label: 'Content', content: renderContent }, // ✅ Pass function reference, not call it
+        { name: 'content', label: 'Content', content: renderContent }   , // ✅ Pass function reference, not call it
         { name: 'chat', label: 'Chat', content: renderChat },
         { name: 'aiActions', label: 'AI Actions', content: renderAIActions },
         { name: 'flashcards', label: 'Flashcards', content: renderFlashcardsTab },
